@@ -1,11 +1,11 @@
-.build:
+.build: &build
     tags:
         - docker
     image: registry.gitlab.com/famedly/company/devops/containers/buildah
     stage: build
     variables:
-        PYTHON_BASE_VERSION: 3.10
-        ANSIBLE_VERSION: 2.13.2
+        PYTHON_BASE_VERSION: "3.10"
+        ANSIBLE_VERSION: "2.13.2"
     before_script:
         - buildah login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
     script:
@@ -16,23 +16,23 @@
 build Python 3.10 - Ansible 2.13.2:
     <<: *build
     variables:
-        PYTHON_BASE_VERSION: 3.10
-        ANSIBLE_VERSION: 2.13.2
+        PYTHON_BASE_VERSION: "3.10"
+        ANSIBLE_VERSION: "2.13.2"
 
 build Python 3.9 - Ansible 2.13.2:
     <<: *build
     variables:
-        PYTHON_BASE_VERSION: 3.9
-        ANSIBLE_VERSION: 2.13.2
+        PYTHON_BASE_VERSION: "3.9"
+        ANSIBLE_VERSION: "2.13.2"
 
 build Python 3.10 - Ansible 2.12.7:
     <<: *build
     variables:
-        PYTHON_BASE_VERSION: 3.10
-        ANSIBLE_VERSION: 2.12.7
+        PYTHON_BASE_VERSION: "3.10"
+        ANSIBLE_VERSION: "2.12.7"
 
 build Python 3.9 - Ansible 2.12.7:
     <<: *build
     variables:
-        PYTHON_BASE_VERSION: 3.9
-        ANSIBLE_VERSION: 2.12.7
+        PYTHON_BASE_VERSION: "3.9"
+        ANSIBLE_VERSION: "2.12.7"
