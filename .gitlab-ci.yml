@@ -1,0 +1,38 @@
+.build:
+    tags:
+        - docker
+    image: registry.gitlab.com/famedly/company/devops/containers/buildah
+    stage: build
+    variables:
+        PYTHON_BASE_VERSION: 3.10
+        ANSIBLE_VERSION: 2.13.2
+    before_script:
+        - buildah login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
+    script:
+        - buildah bud --pull --build-arg PYTHON_BASE_VERSION=${PYTHON_BASE_VERSION} --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} --manifest "${CI_REGISTRY_IMAGE}" --platform linux/amd64 .
+        - buildah bud --pull --build-arg PYTHON_BASE_VERSION=${PYTHON_BASE_VERSION} --build-arg ANSIBLE_VERSION=${ANSIBLE_VERSION} --manifest "${CI_REGISTRY_IMAGE}" --platform linux/amd64 .
+        - buildah push -f v2s2 --all "${CI_REGISTRY_IMAGE}" "docker://${CI_REGISTRY_IMAGE}:py${PYTHON_BASE_VERSION}-ansible${ANSIBLE_VERSION}"
+
+build Python 3.10 - Ansible 2.13.2:
+    <<: *build
+    variables:
+        PYTHON_BASE_VERSION: 3.10
+        ANSIBLE_VERSION: 2.13.2
+
+build Python 3.9 - Ansible 2.13.2:
+    <<: *build
+    variables:
+        PYTHON_BASE_VERSION: 3.9
+        ANSIBLE_VERSION: 2.13.2
+
+build Python 3.10 - Ansible 2.12.7:
+    <<: *build
+    variables:
+        PYTHON_BASE_VERSION: 3.10
+        ANSIBLE_VERSION: 2.12.7
+
+build Python 3.9 - Ansible 2.12.7:
+    <<: *build
+    variables:
+        PYTHON_BASE_VERSION: 3.9
+        ANSIBLE_VERSION: 2.12.7
