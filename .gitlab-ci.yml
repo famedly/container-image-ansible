@@ -28,6 +28,12 @@ Python 3.9 - Ansible 2.13.2:
         PYTHON_BASE_VERSION: "3.9"
         ANSIBLE_VERSION: "2.13.2"
 
+Python 3.8 - Ansible 2.13.2:
+    <<: *build
+    variables:
+        PYTHON_BASE_VERSION: "3.8"
+        ANSIBLE_VERSION: "2.13.2"
+
 Python 3.10 - Ansible 2.12.7:
     <<: *build
     variables:
@@ -38,4 +44,10 @@ Python 3.9 - Ansible 2.12.7:
     <<: *build
     variables:
         PYTHON_BASE_VERSION: "3.9"
+        ANSIBLE_VERSION: "2.12.7"
+
+Python 3.8 - Ansible 2.12.7:
+    <<: *build
+    variables:
+        PYTHON_BASE_VERSION: "3.8"
         ANSIBLE_VERSION: "2.12.7"
