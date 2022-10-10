@@ -1,7 +1,7 @@
 .build: &build
     tags:
         - docker
-    image: registry.gitlab.com/famedly/company/devops/containers/buildah
+    image: registry.gitlab.com/famedly/infra/containers/buildah
     stage: build
     variables:
         PYTHON_BASE_VERSION: "3.10"
