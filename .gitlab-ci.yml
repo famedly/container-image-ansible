@@ -4,8 +4,8 @@
     image: registry.gitlab.com/famedly/infra/containers/buildah
     stage: build
     variables:
-        PYTHON_BASE_VERSION: "3.10"
-        ANSIBLE_VERSION: "2.13.4"
+        PYTHON_BASE_VERSION: "3.11"
+        ANSIBLE_VERSION: "2.14.0"
     before_script:
         - buildah login -u "${CI_REGISTRY_USER}" -p "${CI_REGISTRY_PASSWORD}" "${CI_REGISTRY}"
     script:
@@ -13,40 +13,32 @@
         - buildah push -f v2s2 --all "${CI_REGISTRY_IMAGE}" "docker://${CI_REGISTRY_IMAGE}:py${PYTHON_BASE_VERSION}-ansible${ANSIBLE_VERSION}"
         - buildah push -f v2s2 --all "${CI_REGISTRY_IMAGE}" "docker://${CI_REGISTRY_IMAGE}:py${PYTHON_BASE_VERSION}-ansible${ANSIBLE_VERSION}-${CI_COMMIT_SHORT_SHA}"
 
-Python 3.10 - Ansible 2.13.4:
+Python 3.11 - Ansible 2.14.0:
+    <<: *build
+    variables:
+        PYTHON_BASE_VERSION: "3.11"
+        ANSIBLE_VERSION: "2.14.0"
+
+Python 3.10 - Ansible 2.14.0:
     <<: *build
     variables:
         PYTHON_BASE_VERSION: "3.10"
-        ANSIBLE_VERSION: "2.13.4"
-    after_script:
-        - buildah push -f v2s2 --all "${CI_REGISTRY_IMAGE}" "docker://${CI_REGISTRY_IMAGE}"
+        ANSIBLE_VERSION: "2.14.0"
 
-Python 3.9 - Ansible 2.13.4:
+Python 3.9 - Ansible 2.14.0:
     <<: *build
     variables:
         PYTHON_BASE_VERSION: "3.9"
-        ANSIBLE_VERSION: "2.13.4"
+        ANSIBLE_VERSION: "2.14.0"
 
-Python 3.8 - Ansible 2.13.4:
-    <<: *build
-    variables:
-        PYTHON_BASE_VERSION: "3.8"
-        ANSIBLE_VERSION: "2.13.4"
-
-Python 3.10 - Ansible 2.12.9:
+Python 3.10 - Ansible 2.13.6:
     <<: *build
     variables:
         PYTHON_BASE_VERSION: "3.10"
-        ANSIBLE_VERSION: "2.12.9"
+        ANSIBLE_VERSION: "2.13.6"
 
-Python 3.9 - Ansible 2.12.9:
+Python 3.9 - Ansible 2.13.6:
     <<: *build
     variables:
         PYTHON_BASE_VERSION: "3.9"
-        ANSIBLE_VERSION: "2.12.9"
-
-Python 3.8 - Ansible 2.12.9:
-    <<: *build
-    variables:
-        PYTHON_BASE_VERSION: "3.8"
-        ANSIBLE_VERSION: "2.12.9"
+        ANSIBLE_VERSION: "2.13.6"
