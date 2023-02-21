@@ -2,6 +2,7 @@ ARG PYTHON_BASE_VERSION=3.11
 FROM docker.io/python:${PYTHON_BASE_VERSION}
 ARG PYTHON_BASE_VERSION=3.11
 ARG ANSIBLE_VERSION=2.14.0
+ARG ANSIBLE_LINT_VERSION=6.13.1
 
 # Install base requirements
 RUN apt update \
@@ -11,6 +12,7 @@ RUN apt update \
 # Install ansible
 COPY requirements.txt requirements.txt
 RUN pip install ansible-core==${ANSIBLE_VERSION} \
+    && pip install ansible-lint==${ANSIBLE_LINT_VERSION} \
     && pip install -r requirements.txt \
     && rm requirements.txt
 
