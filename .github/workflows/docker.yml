@@ -1,0 +1,34 @@
+---
+name: Docker
+
+on:
+  push:
+    tags: [ '*' ]
+
+jobs:
+  docker:
+    strategy:
+      matrix:
+        python_base_version:
+          - "3.9"
+          - "3.10"
+          - "3.11"
+        ansible_version:
+          - "6.7.0"
+          - "7.2.0"
+        ansible_lint_version:
+          - "6.13.1"
+        exclude:
+          - python_base_version: "3.11"
+            ansible_version: "6.7.0"
+
+    uses: famedly/github-workflows/.github/workflows/docker.yml@docker-v1
+    with:
+      push: ${{ github.event_name != 'pull_request' }} # Always build, don't publish on pull requests
+      registry_user: famedly-ci
+      registry: docker-oss.nexus.famedly.de
+      image_name: ansible
+      tags: |
+        py-${{ matrix.python_base_version }}-ansible${{ matrix.ansible_version }}
+      build_args: '["PYTHON_BASE_VERSION=${{ matrix.python_base_version }}", "ANSIBLE_VERSION=${{ matrix.ansible_version }}", "ANSIBLE_LINT_VERSION=${{ matrix.ansible_lint_version }}"]' 
+    secrets: inherit
