@@ -9,7 +9,7 @@ matrix-nio~=0.20.1
 signedjson~=1.1.4
 dnspython==2.2.1
 filelock==3.8.0
-GitPython==3.1.29
+GitPython==3.1.35
 hcloud==1.18.1
 python-gnupg==0.5.0
 netaddr>=0.8.0
