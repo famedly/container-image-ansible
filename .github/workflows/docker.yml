@@ -23,7 +23,7 @@ jobs:
           - python_base_version: "3.11"
             ansible_version: "6.7.0"
 
-    uses: famedly/github-workflows/.github/workflows/docker.yml@docker-v1
+    uses: famedly/github-workflows/.github/workflows/docker.yml@sammy/docker_sbom
     with:
       push: ${{ github.event_name != 'pull_request' }} # Always build, don't publish on pull requests
       registry_user: famedly-ci
