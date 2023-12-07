@@ -7,11 +7,11 @@ pytest-xdist==2.5.0
 # Famedly requirements
 matrix-nio~=0.20.1
 signedjson~=1.1.4
-dnspython==2.2.1
-filelock==3.8.0
-GitPython==3.1.35
-hcloud==1.18.1
-python-gnupg==0.5.0
+dnspython==2.4.2
+filelock==3.12.3
+GitPython==3.1.37
+hcloud==1.28.0
+python-gnupg==0.5.1
 netaddr>=0.8.0
 passlib>=1.7.4
 jwcrypto>=1.0
